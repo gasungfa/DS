@@ -1,0 +1,11 @@
+LOAD
+ADD new_files img_files/new_filesnumbers.csv
+MODIFY new_files "cow" 78
+ADD new2_files img_files/new2_filesnumbers.csv
+MODIFY new2_files "leeminhyok" 687
+MOVE
+PRINT
+SEARCH "building"
+SELECT 78
+EDIT -l 100
+EXIT
