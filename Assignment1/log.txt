@@ -1,0 +1,47 @@
+==========LOAD==========
+there are lots of people in the park/1
+the man is gorgeous/2
+the woman is smiling/3
+the man takes a picture/4
+three peppers are big/5
+the building is like a pyramid/6
+========================
+========ADD========
+SUCCESS
+=====================
+========MODIFY========
+SUCCESS
+=====================
+========ADD========
+SUCCESS
+=====================
+========MODIFY========
+SUCCESS
+=====================
+========Move========
+SUCCESS
+=====================
+========PRINT========
+img_files /there are lots of people in the park /1
+img_files /the man is gorgeous /2
+img_files /the woman is smiling /3
+img_files /the man takes a picture /4
+img_files /three peppers are big /5
+img_files /the building is like a pyramid /6
+new_files /cow /78
+new_files /pig /100
+new2_files /joharam /160
+new2_files /leeminhyok /687
+=====================
+========SEARCH========
+"the building is like a pyramid"/6
+=====================
+========SELECT========
+SUCCESS
+=====================
+========EDIT========
+SUCCESS
+=====================
+========EXIT========
+SUCCESS
+=====================
