@@ -1,15 +1,15 @@
 #include<string>
 #include<fstream>
 #include "Loaded_List.h"
-#include "Loaded_List_Node.h"
-int i = 1;
-bool Loaded_List::IsEmpty(){
+#include "Loaded_List_Node.h"//include header file
+int i = 1;//global variable for overflow(100)
+bool Loaded_List::IsEmpty(){//using for Linked List is empty
     if(head == nullptr){
         return true;
     }
     return false;
 }
-Loaded_List_Node* Loaded_List::GetEnd(){
+Loaded_List_Node* Loaded_List::GetEnd(){//Returning the value that Linked List's end node
     if(head == nullptr){
         return nullptr;
     }
@@ -25,7 +25,7 @@ Loaded_List_Node* Loaded_List::GetEnd(){
     }
     return CurNode;
 }
-Loaded_List_Node* Loaded_List::FindDel(Loaded_List_Node* CurNode){
+Loaded_List_Node* Loaded_List::FindDel(Loaded_List_Node* CurNode){//Returning the value that input node"s previous node
     Loaded_List_Node* Node = head;
     if(CurNode->GetNum() == "\0"){
         while(Node->GetDown()->GetDir().compare(CurNode->GetDir()) != 0){
@@ -47,11 +47,11 @@ Loaded_List_Node* Loaded_List::FindDel(Loaded_List_Node* CurNode){
     }
     return nullptr;
 }
-Loaded_List_Node* Loaded_List::GetHead(){
+Loaded_List_Node* Loaded_List::GetHead(){//return Linked List's head
     return head;
 }
-Loaded_List_Node* Loaded_List::Load_Delete(){//100개 넘었을 때 삭제해주는 용도
-    if(head->GetNext() == nullptr){
+Loaded_List_Node* Loaded_List::Load_Delete(){//using for delete, if Linked List is over 100?
+    if(head->GetNext() == nullptr){//delete node is head node
         head = head->GetDown();
         Loaded_List_Node* node = head->GetNext();
         Loaded_List_Node* DelNode = node;
@@ -59,15 +59,15 @@ Loaded_List_Node* Loaded_List::Load_Delete(){//100개 넘었을 때 삭제해주
         free(DelNode);
         return nullptr;
     }
-    Loaded_List_Node* node = head->GetNext();
+    Loaded_List_Node* node = head->GetNext();//delete node is not head Node
     Loaded_List_Node* DelNode = node;
     head->SetNext(DelNode->GetNext());
     free(DelNode);
     return nullptr;
 }
-Loaded_List_Node* Loaded_List::Load(std::string num, std::string name){//하나씩 넣는 용도
+Loaded_List_Node* Loaded_List::Load(std::string num, std::string name){//if input command is Load, store information to linked list
     const char* Dir_name = "img_files";
-    if(head == nullptr){
+    if(head == nullptr){//if linked list is empty
         head = new Loaded_List_Node();
         head->SetDir(Dir_name);
         Loaded_List_Node* CurNode = new Loaded_List_Node();
@@ -88,13 +88,13 @@ Loaded_List_Node* Loaded_List::Load(std::string num, std::string name){//하나�
     CurNode->SetNext(NewNode);
     return head;
 }
-Loaded_List_Node* Loaded_List::Add(std::string num, std::string name, const char* dir)
+Loaded_List_Node* Loaded_List::Add(std::string num, std::string name, const char* dir)//if command is Add
 {
-    if(IsEmpty() == true){
+    if(IsEmpty() == true){//Linked list is empty
         return nullptr;
     }
     Loaded_List_Node* DirNode = head;
-    while(DirNode){
+    while(DirNode){//when first time add command
         if(DirNode->GetDir().compare(dir) == 0){
             break;
         }
@@ -108,14 +108,14 @@ Loaded_List_Node* Loaded_List::Add(std::string num, std::string name, const char
         DirNode = DirNode->GetDown();
     }
     
-    if(DirNode->GetNext() == nullptr){//처음 Add할때
+    if(DirNode->GetNext() == nullptr){//when first time add command
         Loaded_List_Node* CurNode = new Loaded_List_Node();
         DirNode->SetNext(CurNode);
         CurNode->SetNum(num);
         CurNode->SetDir(dir);
         CurNode->SetFname(name);
     }
-    else{
+    else{//add command is not first time
         Loaded_List_Node* NewNode = new Loaded_List_Node();
         Loaded_List_Node* CurNode = DirNode->GetNext();
         while(CurNode->GetNext()){
@@ -129,7 +129,7 @@ Loaded_List_Node* Loaded_List::Add(std::string num, std::string name, const char
     }
     return DirNode;
 }
-void Loaded_List::Print_Loaded_List(){
+void Loaded_List::Print_Loaded_List(){//print the linked list
     if(IsEmpty() == true){
         return;
     }
@@ -144,16 +144,16 @@ void Loaded_List::Print_Loaded_List(){
     Load_Result<<"========================"<<std::endl;
     return;
 }
-Loaded_List_Node* Loaded_List::Modify(const char* Dir,const char* filename, std::string num)
+Loaded_List_Node* Loaded_List::Modify(const char* Dir,const char* filename, std::string num)//to find node and delete and insert
 {
-    if(head == nullptr){
+    if(head == nullptr){//if Linked list is empty
         return nullptr;
     }
     Loaded_List_Node* FindNode = new Loaded_List_Node();
     Loaded_List_Node* Node = new Loaded_List_Node();
     Node = head;
     FindNode = head->GetNext();
-    while(Node){
+    while(Node){//when same value is exist
         if(FindNode == nullptr){
             Node = Node->GetDown();
             if(Node == nullptr){
@@ -161,7 +161,7 @@ Loaded_List_Node* Loaded_List::Modify(const char* Dir,const char* filename, std:
             }
             FindNode = Node->GetNext();
         }
-        if(FindNode->GetNum().compare(num) == 0){
+        if(FindNode->GetNum().compare(num) == 0){//if same value, return NULL
             return nullptr;
         }
         FindNode = FindNode->GetNext();
@@ -169,7 +169,7 @@ Loaded_List_Node* Loaded_List::Modify(const char* Dir,const char* filename, std:
 
     Loaded_List_Node* PrevNode = new Loaded_List_Node();
     Loaded_List_Node* CurNode = head;
-    while(CurNode != nullptr){
+    while(CurNode != nullptr){//find end node
         if(CurNode->GetDir().compare(Dir) == 0){
             PrevNode = CurNode;
             CurNode = CurNode->GetNext();
@@ -177,12 +177,12 @@ Loaded_List_Node* Loaded_List::Modify(const char* Dir,const char* filename, std:
         }
         CurNode = CurNode->GetDown();
     }
-    if(CurNode == nullptr){////////////제출하기 전에 modify 잘되는지 확인해보고 제출
+    if(CurNode == nullptr){//Linked list is empty
         return nullptr;
     }
     //PrevNode->GetFileName().compare("\0") == 0&&CurNode != head
-    if(CurNode->GetNext() != nullptr){
-        if(CurNode->GetNext()->GetFileName().compare(filename) == 0){//헤드 다음 노드일때(고친듯?)
+    if(CurNode->GetNext() != nullptr){//delete and insert
+        if(CurNode->GetNext()->GetFileName().compare(filename) == 0){//when headNode's next node is target
         Loaded_List_Node* NewNode = new Loaded_List_Node();
         NewNode->SetDir(CurNode->GetDir());
         NewNode->SetFname(CurNode->GetNext()->GetFileName());
@@ -199,7 +199,7 @@ Loaded_List_Node* Loaded_List::Modify(const char* Dir,const char* filename, std:
         }
     }
 
-    while(CurNode->GetNext() != nullptr){
+    while(CurNode->GetNext() != nullptr){//when target is not end node, head's next node
         if(CurNode->GetFileName().compare(filename) == 0){
             Loaded_List_Node* NewNode = new Loaded_List_Node();
             NewNode->SetDir(CurNode->GetDir());
@@ -213,7 +213,7 @@ Loaded_List_Node* Loaded_List::Modify(const char* Dir,const char* filename, std:
         PrevNode = CurNode;
         CurNode = CurNode->GetNext();
     }
-    if(CurNode->GetFileName().compare(filename) == 0){//마지막 노드가 대상 노드일때
+    if(CurNode->GetFileName().compare(filename) == 0){//when end node is target
         Loaded_List_Node* NewNode = new Loaded_List_Node();
         NewNode->SetDir(CurNode->GetDir());
         NewNode->SetFname(CurNode->GetFileName());

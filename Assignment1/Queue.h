@@ -51,7 +51,7 @@ public:
     std::string EndValue_num(){
         return num[front];
     }
-    void push(std::string filename,std::string unique_num){
+    void push(std::string filename,std::string unique_num){//insert data
         if(!isFull()){
             name[rear] = filename;
             num[rear] = unique_num;
@@ -62,13 +62,12 @@ public:
             //Queue Full
         }
     }
-    void pop(){
+    void pop(){//delete the data
         if(!empty()){
             front = (front+1) %size;
         }
         else{
             return;
-            //Queue empty
         }
     }
 };

@@ -1,7 +1,7 @@
 #ifndef RESULT_H
 #define RESULT_H
 
-enum Result{
+enum Result{//for print the result
 
     Success = 0,
 

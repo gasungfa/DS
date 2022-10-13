@@ -5,9 +5,9 @@
 
 class Loaded_List{
 private:
-    Loaded_List_Node* head = nullptr;
+    Loaded_List_Node* head = nullptr;//linked list's head
 public:
-    Loaded_List(){head = nullptr;}
+    Loaded_List(){head = nullptr;}//constructor
     bool IsEmpty();
     Loaded_List_Node* FindDel(Loaded_List_Node* CurNode);
     Loaded_List_Node* GetEnd();
