@@ -5,13 +5,13 @@
 
 class Loaded_List_Node{
 private:
-    Loaded_List_Node* next;
-    Loaded_List_Node* down;
-    std::string f_name;
-    std::string dir;
-    std::string u_num;
+    Loaded_List_Node* next;//next pointer
+    Loaded_List_Node* down;//down pointer
+    std::string f_name;//file name
+    std::string dir;//directory
+    std::string u_num;//unique num
 public:
-    Loaded_List_Node(){
+    Loaded_List_Node(){//constructor
         next = nullptr;
         down = nullptr;
     }

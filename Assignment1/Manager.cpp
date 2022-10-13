@@ -7,17 +7,17 @@
 #include<fstream>
 int n = 0;
 
-Manager::Manager()
+Manager::Manager()//manager class's constructor
 {
-    remove(RESULT_LOG_PATH);
-    fout.open(RESULT_LOG_PATH,std::ios_base::out|std::ios::app);
-    list = new Loaded_List();
-    bst = new Database_BST();
+    remove(RESULT_LOG_PATH);//log.txt remove
+    fout.open(RESULT_LOG_PATH,std::ios_base::out|std::ios::app);//file open and use to connect previous value
+    list = new Loaded_List();//linked list's object
+    bst = new Database_BST();//BST's object
 }
 
-Manager::~Manager()
+Manager::~Manager()//manager class's Destructor
 {
-    if (fout.is_open()){
+    if (fout.is_open()){//file close
         fout.close();
     }
     free(list);
@@ -27,7 +27,7 @@ Manager::~Manager()
 void Manager::Run(const char* filepath)
 {
     fin.open(filepath);
-    if(!fin.is_open()) 
+    if(!fin.is_open()) //file is not open
 	{
         PrintError(CommandFileNotExist);
         return;
@@ -35,7 +35,7 @@ void Manager::Run(const char* filepath)
     char* text = new char[100];
     while(!fin.eof()){
         fin.getline(text, 100);//예외처리 해줄것
-        if(text == nullptr){
+        if(text == nullptr){//command.txt is empty
             Result result = WrongInstruction;
             PrintError(result);
             continue;
@@ -44,29 +44,29 @@ void Manager::Run(const char* filepath)
         char* ptr2 = new char[100];
         char* ptr3 = new char[100];
         char* ptr4 = new char[100];
-        if(strcmp(ptr1,"LOAD") == 0){
+        if(strcmp(ptr1,"LOAD") == 0){//if command is LOAD
             if(strtok(NULL," ") != NULL){//if factor is over
                 PrintError(LoadFileNotExist);
                 continue;
             }
-            Result result = Load("./img_files/filesnumbers.csv",list);
-            if(result != Success){
+            Result result = Load("./img_files/filesnumbers.csv",list);//start Load implement
+            if(result != Success){//if result is not Success
                 PrintError(result);
                 continue;
             }
         }
-        else if(strcmp(ptr1,"ADD") == 0){
+        else if(strcmp(ptr1,"ADD") == 0){//if command is ADD
             ptr2 = strtok(NULL, " ");
-            if(ptr2 == nullptr){
-                PrintError(AddError);
+            if(ptr2 == nullptr){//if factor is short
+                PrintError(AddError);//print error
                 continue;
             }
             ptr3 = strtok(NULL, " ");
-            if(ptr3 == nullptr){
+            if(ptr3 == nullptr){//if factor is short
                 PrintError(AddError);
                 continue;
             }
-            if(list->GetHead() == nullptr){
+            if(list->GetHead() == nullptr){//if Linked List's head == NULL
                 Result result = AddError;
                 PrintError(result);
                 continue;
@@ -75,7 +75,7 @@ void Manager::Run(const char* filepath)
                 PrintError(AddError);
                 continue;
             }
-            Result result = Add(ptr2,ptr3,list);
+            Result result = Add(ptr2,ptr3,list);//run the Add implement
             if(result == Success){
                 PrintAdd();
             }
@@ -84,19 +84,19 @@ void Manager::Run(const char* filepath)
                 continue;
             }
         }
-        else if(strcmp(ptr1,"MODIFY") == 0){
+        else if(strcmp(ptr1,"MODIFY") == 0){//if command is MODIFY
             ptr2 = strtok(NULL, " ");
-            if(ptr2 == nullptr){
+            if(ptr2 == nullptr){//if factor is short
                 PrintError(ModifyError);
                 continue;
             }
             ptr3 = strtok(NULL, "\"");
-            if(ptr3 == nullptr){
+            if(ptr3 == nullptr){//if factor is short
                 PrintError(ModifyError);
                 continue;
             }
             ptr4 = strtok(NULL, " ");
-            if(ptr4 == nullptr){
+            if(ptr4 == nullptr){//if factor is short
                 PrintError(ModifyError);
                 continue;
             }
@@ -106,29 +106,29 @@ void Manager::Run(const char* filepath)
             }
             char* end;
             while(isspace(*ptr4)) ptr4++;
-            //앞에 " "비우기
+            //in front of " " emptying
             if(*ptr4 == 0){
-                //배열 전체가 공백일 때
+                //when the entire array is blank
                 PrintError(ModifyError);
             }
             end = ptr4 + strlen(ptr4) -1;
             while(end > ptr4&&isspace(*end)) end--;
             *(end+1) = 0;
-            Result result = Modify(ptr2,ptr3,ptr4);
-            if(result != Success){
+            Result result = Modify(ptr2,ptr3,ptr4);//run the implement MOdify
+            if(result != Success){//if the result is not Success
                 PrintError(result);
             }
             else{
                 PrintModify();
             }
         }
-        else if(strcmp(ptr1,"MOVE") == 0){
+        else if(strcmp(ptr1,"MOVE") == 0){//if command is MOVE
             if(strtok(NULL," ") != NULL){//if factor is over
                 PrintError(MoveError);
                 continue;
             }
-            Result result = Move(list);
-            if(result != Success){
+            Result result = Move(list);//run the implement Move with linked list
+            if(result != Success){//if result is not Success
                 PrintError(result);
                 continue;
             }
@@ -136,19 +136,19 @@ void Manager::Run(const char* filepath)
                 PrintMove();
             }
         }
-        else if(strcmp(ptr1,"PRINT") == 0){
+        else if(strcmp(ptr1,"PRINT") == 0){//if command is PRINT
             if(strtok(NULL," ") != NULL){//if factor is over
                 PrintError(Print_Error);
                 continue;
             }
-            Result result = Print(bst);
+            Result result = Print(bst);//run the implement Print with binary search tree
             if(result != Success){
                 PrintError(result);
             }
         }
-        else if(strcmp(ptr1,"SEARCH") == 0){
+        else if(strcmp(ptr1,"SEARCH") == 0){//if Command is SEARCH
             ptr2 = strtok(NULL,"\"");
-            if(ptr2 == nullptr){
+            if(ptr2 == nullptr){//if factor is short
                 PrintError(Search_Error);
                 continue;
             }
@@ -156,15 +156,16 @@ void Manager::Run(const char* filepath)
                 PrintError(Search_Error);
                 continue;
             }
-            char* end;
+            char* end;//in front of " " emptying
             while(isspace(*ptr2)) ptr2++;
             if(*ptr2 == 0){
+                //when the entire array is blank
                 PrintError(Search_Error);
             }
             end = ptr2 + strlen(ptr2) -1;
             while(end > ptr2&&isspace(*end)) end--;
             *(end+1) = 0;
-            Result result = SEARCH(ptr2);
+            Result result = SEARCH(ptr2);//run the implement SEARCH
             if(result != Success&&result != CloseNum){
                 PrintError(result);
                 continue;
@@ -177,9 +178,9 @@ void Manager::Run(const char* filepath)
                 continue;
             }
         }
-        else if(strcmp(ptr1,"SELECT") == 0){
+        else if(strcmp(ptr1,"SELECT") == 0){//if Command is SELECT
             ptr2 = strtok(NULL,"\n");
-            if(ptr2 == nullptr){
+            if(ptr2 == nullptr){//if factor is short
                 PrintError(Select_Error);
                 continue;
             }
@@ -187,8 +188,8 @@ void Manager::Run(const char* filepath)
                 PrintError(Select_Error);
                 continue;
             }
-            Result result = Select(ptr2);
-            if(result != Success){
+            Result result = Select(ptr2);//run the implement Select
+            if(result != Success){//if result is not Success
                 PrintError(Select_Error);
             }
             else{
@@ -196,25 +197,25 @@ void Manager::Run(const char* filepath)
                 continue;
             }
         }
-        else if(strcmp(ptr1,"EDIT") == 0){
-            if(bst->GetRoot() == nullptr){
+        else if(strcmp(ptr1,"EDIT") == 0){//if Command is EDIT
+            if(bst->GetRoot() == nullptr){//if bst is empty
                 PrintError(EditError);
                 continue;
             }
             ptr2 = strtok(NULL," ");
-            if(ptr2 == nullptr){
+            if(ptr2 == nullptr){//if factor is short
                 PrintError(EditError);
                 continue;
             }
-            if(strcmp(ptr2,"-f") == 0){
+            if(strcmp(ptr2,"-f") == 0){//if command is -f
                 if(strtok(NULL," ") != NULL){//if factor is over
                 PrintError(EditError);
                 continue;
                 }
-                Symmetry(Image);
+                Symmetry(Image);//Point Symmetry the image
                 PrintEdit();
             }
-            else if(strcmp(ptr2,"-l") == 0){
+            else if(strcmp(ptr2,"-l") == 0){//if command is -l
                 ptr3 = strtok(NULL," ");
                 if(ptr3 == nullptr){
                     PrintError(EditError);
@@ -224,28 +225,29 @@ void Manager::Run(const char* filepath)
                 PrintError(EditError);
                 continue;
                 }
-                Light(ptr3,Image);
+                Light(ptr3,Image);//raise the brightness
                 PrintEdit();
             }
-            else if(strcmp(ptr2,"-r") == 0){
+            else if(strcmp(ptr2,"-r") == 0){//if command is -r
                 if(strtok(NULL," ") != NULL){//if factor is over
                 PrintError(EditError);
                 continue;
                 }
-                Reduction(Image);
+                Reduction(Image);//resize the image
                 PrintEdit();
             }
         }
-        else if(strcmp(ptr1,"EXIT") == 0){
+        else if(strcmp(ptr1,"EXIT") == 0){//if command is EXIT
+            free(text);
             PrintExit();
             return;
         }
         else{
-            Result result = WrongInstruction;
+            Result result = WrongInstruction;//wrong instruction
             PrintError(result);
         }
     }
-    fin.close();
+    fin.close();//file close
     
 }
 void Manager::PrintError(Result result)
@@ -253,7 +255,7 @@ void Manager::PrintError(Result result)
     fout << "========ERROR========" <<std::endl<< result << std::endl;
     fout<<  "====================="<<std::endl;
 }
-Result Manager::Load(const char* filepath,Loaded_List* list)
+Result Manager::Load(const char* filepath,Loaded_List* list)//Load the data
 {
     std::ifstream Load_input;
     Load_input.open(filepath);
@@ -266,28 +268,28 @@ Result Manager::Load(const char* filepath,Loaded_List* list)
     std::string num;
     std::string Name;
     std::string garbage;
-    while(!Load_input.eof()){
-        if(n>99){
+    while(!Load_input.eof()){//end of file
+        if(n>99){//if n is over 99
             if(list->GetHead() == nullptr){
                 n =0;
             }
             else{
-                list->Load_Delete();
+                list->Load_Delete();//delete the Linked List's data
                 n--;
             }
         }
-        getline(Load_input,num,',');
+        getline(Load_input,num,',');//receive input
         if(num == "\0"){
             return Result::LoadFileNotExist;
         }
-        getline(Load_input,Name,'.');
-        getline(Load_input,garbage,'\n');
-        list->Load(num, Name);
+        getline(Load_input,Name,'.');//receive input
+        getline(Load_input,garbage,'\n');//receive input
+        list->Load(num, Name);//run the implement Load
         n++;
     }
-    list->Print_Loaded_List();
-    Load_input.close();
-    return Result::Success;
+    list->Print_Loaded_List();//Print the Linked List
+    Load_input.close();//file close
+    return Result::Success;//return success
 }
 Result Manager::Add(const char* Dir, const char* filepath,Loaded_List* list)
 {
@@ -305,28 +307,28 @@ Result Manager::Add(const char* Dir, const char* filepath,Loaded_List* list)
     if(Add_input.eof()){
         return Result::AddError;
     }
-    if(list->GetHead() == nullptr){
+    if(list->GetHead() == nullptr){//if linked list is empty
         return Result::AddError;
     }
     while(!Add_input.eof()){
-        if(n>99){
-            list->Load_Delete();
-            n--;
+        if(n>99){//if n is over 99
+            list->Load_Delete();//delete the linked list's data
+            n--;//global variable --
         }
-        getline(Add_input,num,',');
-        getline(Add_input,Name,'.');
-        getline(Add_input,garbage,'\n');
-        if(list->Add(num,Name,Dir) == nullptr){
+        getline(Add_input,num,',');//receive input
+        getline(Add_input,Name,'.');//receive input
+        getline(Add_input,garbage,'\n');//receive garbage value
+        if(list->Add(num,Name,Dir) == nullptr){//run the implement Add
             return Result::AddError;
         }
-        n++;
+        n++;//global variable++
     }
     Add_input.close();
     return Result::Success;
 }
 Result Manager::Modify(const char* Dir,const char* filename, std::string num)
 {
-    if(list->Modify(Dir,filename,num) ==  nullptr){
+    if(list->Modify(Dir,filename,num) ==  nullptr){//run the implement Modify
         return ModifyError;
     }
     return Result::Success;
@@ -341,7 +343,7 @@ Result Manager::Modify(const char* Dir,const char* filename, std::string num)
     fout<<  "====================="<<std::endl;
  }
 Result Manager::Move(Loaded_List* list){
-    if(list->IsEmpty() == true){
+    if(list->IsEmpty() == true){//Linked List's object is not empty
         return MoveError;
     }
     bst->Move(list);
@@ -374,24 +376,24 @@ Result Manager::SEARCH(std::string ptr2){
     if(bst->GetRoot() == nullptr){
         return Search_Error;
     }
-    bst->InsertQueue(bst->GetRoot());
+    bst->InsertQueue(bst->GetRoot());//bst's data for insert queue
     if(bst->Search(ptr2,bst->GetRoot()) == 0){
         return CloseNum;
     }
     return Success;
 }
-Result Manager::Select(std::string ptr2){
+Result Manager::Select(std::string ptr2){//if Command is SELECT
     std::string FName;
     if(bst->Inorder(bst->GetRoot(),ptr2).compare("\0") == 0){
         return Select_Error;
     }
     else{
-        FName = bst->Inorder(bst->GetRoot(),ptr2);
+        FName = bst->Inorder(bst->GetRoot(),ptr2);//Find the value with Inorder
     }
     std::string path = "./images/";
     std::string raw = ".RAW";
-    FName = path+FName;
-    FName = FName + raw;
+    FName = path+FName;//put together path and Fname
+    FName = FName + raw;//put together raw and Fname
     Manager::Image = FName;
     return Success;
 }

@@ -9,7 +9,7 @@
 #include<string>
 #include<cstring>
 
-class RawQueue
+class RawQueue//for RawReader.h
 {
 public:
     int front;
@@ -17,7 +17,7 @@ public:
     int size;
     unsigned char* light;
 
-    RawQueue(){
+    RawQueue(){//set the value
         size = VALUE;
         light = new unsigned char[VALUE];
         front = 0;
@@ -26,7 +26,7 @@ public:
     ~RawQueue(){
         delete[]light;
     }
-    bool isFull(){
+    bool isFull(){//if queue is Full?
         if((rear+1)%size == front){
             return true;
         }
@@ -34,7 +34,7 @@ public:
             return false;
         }
     }
-    bool empty(){
+    bool empty(){//if queue is empty?
         if(rear == front){
             return true;
         }
@@ -42,7 +42,7 @@ public:
             return false;
         }
     }
-    void push(char Light){
+    void push(char Light){//insert data in queue
         if(!isFull()){
             light[rear] = Light;
             rear = (rear+1)%size;
@@ -52,7 +52,7 @@ public:
             //Queue Full
         }
     }
-    unsigned char pop(){
+    unsigned char pop(){//delete the data in queue
         if(!empty()){
             front = (front+1) %size;
             return light[front];

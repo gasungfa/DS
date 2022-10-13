@@ -1,24 +1,24 @@
-#pragma once
+#pragma once//The header file is included only once
 
 #include "Loaded_List_Node.h"
 #include "Loaded_List.h"
 #include <iostream>
 
-class Database_BST_Node
+class Database_BST_Node//declare Database_BST_Node(BST)
 {
 private:
-	Loaded_List_Node m_data;
-	Database_BST_Node* m_left;
-	Database_BST_Node* m_right;
+	Loaded_List_Node m_data;//Linked List's data(num, name, directory)
+	Database_BST_Node* m_left;//left child
+	Database_BST_Node* m_right;//right child
 public:
-	Database_BST_Node(){
+	Database_BST_Node(){//Constructor, All Data set NULL
 		m_data.SetDir("\0");
 		m_data.SetFname("\0");
 		m_data.SetNum("\0");
         m_left = nullptr;
         m_right = nullptr;
     }
-	~Database_BST_Node(){
+	~Database_BST_Node(){//left child, right child set NULL
 		m_left = nullptr;
 		m_right = nullptr;
 	}
