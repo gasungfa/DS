@@ -10,8 +10,8 @@ private:
 	BpTreeNode* pPrev;
 public:
 	BpTreeDataNode() {
-		pNext = NULL;
-		pPrev = NULL;
+		pNext = nullptr;
+		pPrev = nullptr;
 	}
 
 	void setNext(BpTreeNode* pN) { pNext = pN; }

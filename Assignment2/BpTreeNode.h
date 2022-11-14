@@ -1,4 +1,6 @@
-#pragma once
+//#pragma once
+#ifndef BPTREENODE_H
+#define BPTREENODE_H
 #include "FrequentPatternNode.h"
 #include "FPNode.h"
 class BpTreeNode
@@ -9,8 +11,8 @@ private:
 
 public:
 	BpTreeNode() {
-		pParent = NULL;
-		pMostLeftChild = NULL;
+		pParent = nullptr;
+		pMostLeftChild = nullptr;
 	}
 	~BpTreeNode() {
 
@@ -35,3 +37,5 @@ public:
 	virtual map<int, FrequentPatternNode*>* getDataMap() { return {}; }
 
 };
+
+#endif

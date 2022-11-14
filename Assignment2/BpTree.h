@@ -13,7 +13,7 @@ private:
 	ofstream* fout;
 public:
 	BpTree(ofstream *fout, int order = 3) {
-		root = NULL;
+		root = nullptr;
 		this->order = order;
 		this->fout = fout;
 	}
