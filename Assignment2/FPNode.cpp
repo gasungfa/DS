@@ -2,6 +2,7 @@
 
 FPNode::FPNode()	//constructor
 {
+	item = new char[20];
 	parent = NULL;
 	next = NULL;
 	frequency = 0;
@@ -10,7 +11,7 @@ FPNode::FPNode()	//constructor
 
 FPNode::~FPNode()//destructor
 {
-
+	delete [] item;
 }
 
 FPNode* FPNode::getChildrenNode(string item) {

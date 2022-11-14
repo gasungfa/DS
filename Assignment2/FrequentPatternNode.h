@@ -1,5 +1,6 @@
-#pragma once
-
+//#pragma once
+#ifndef FREQUENTPATTERNNODE_H
+#define FREQUENTPATTERNNODE_H
 #include <set>
 #include <map>
 using namespace std;
@@ -7,7 +8,7 @@ using namespace std;
 class FrequentPatternNode
 {
 private:
-	int frequency;		// FrequentPattern frequency
+	int frequency;	// FrequentPattern frequency
 	multimap<int, set<string> > FrequentPatternList;	//first is FrequentPattern size, second is FrequentPattern data
 
 public:
@@ -19,4 +20,5 @@ public:
 	multimap<int, set<string> > getList() { return FrequentPatternList; }
 };
 
+#endif
 

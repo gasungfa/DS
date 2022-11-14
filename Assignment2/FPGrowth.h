@@ -1,4 +1,6 @@
-#pragma once
+//#pragma once
+#ifndef FPGROWTH_H
+#define FPGROWTH_H
 #include "HeaderTable.h"
 #include <fstream>
 #include <iostream>
@@ -12,8 +14,8 @@ private:
 	FPNode* fpTree;
 	HeaderTable* table;
 	map<set<string>, int> frequenctPatterns;
-	ofstream* fout;
-	ofstream flog;
+	ofstream* fout;//log.txt
+	ofstream flog;//result.txt
 public:
 	FPGrowth(ofstream *fout, int threshold = 3) {
 		this->threshold = threshold;
@@ -23,7 +25,7 @@ public:
 		this->fout = fout;
 	}
 	~FPGrowth();
-	void createTable(char* item, int frequency) { table->insertTable(item, frequency); }
+	void createTable(int frequency,const char* item) { table->insertTable(frequency,item); }
 	void createFPtree(FPNode* root, HeaderTable* table, list<string> item_array, int frequency);
 	void connectNode(HeaderTable* table, string item, FPNode* node);
 
@@ -46,4 +48,4 @@ public:
 
 	};
 
-
+#endif

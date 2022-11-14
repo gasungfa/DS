@@ -1,6 +1,9 @@
-#pragma once
+//#pragma once
+#ifndef MANAGER_H
+#define MANAGER_H
 #include "FPGrowth.h"
 #include "BpTree.h"
+#include "cstring"
 
 class Manager
 {
@@ -11,12 +14,20 @@ private:
 public:
 	Manager(int threshold, int bpOrder)	//constructor
 	{
-		/* You must fill here */
+		remove("./log.txt");
+		flog.open("./log.txt",std::ios_base::out|std::ios::app);
+		fpgrowth = new FPGrowth(&flog,threshold);
+		bptree = new BpTree(&flog, bpOrder);
 	}
 
 
 	~Manager()//destructor
 	{
+		if(flog.is_open()){
+			flog.close();
+		}
+		free(fpgrowth);
+		free(bptree);
 		/* You must fill here */
 	}
 
@@ -41,3 +52,4 @@ public:
 
 };
 
+#endif

@@ -5,7 +5,7 @@
 //template <class T>
 class BpTreeIndexNode : public BpTreeNode {
 private:
-	map <int, BpTreeNode*> mapIndex;
+	map <int, BpTreeNode*> mapIndex;//Basically ascending
 
 public:
 	BpTreeIndexNode() {}
