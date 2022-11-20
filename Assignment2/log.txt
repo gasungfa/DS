@@ -57,53 +57,9 @@ cookies 1
 carrots 1
 bug spray 1
 ================================
+
 ======= PRINT_FPTREE ========
 {StandardItem.Frequency} (Path_Itme.Frequency)
-{almonds.2}
-(almonds.1) (burgers.1) (eggs.1) (french fries.2) (green tea.4) (soup.12) 
-(almonds.1) (hot dogs.1) (turkey.1) (burgers.1) (ground beef.1) (chocolate.2) (eggs.2) (soup.12) 
-{black tea.2}
-(black tea.1) (fresh tuna.1) (salmon.1) (turkey.1) (chicken.1) (eggs.1) (mineral water.3) (spaghetti.5) 
-(black tea.1) (escalope.1) (frozen smoothie.1) (salmon.1) (energy bar.1) (ground beef.1) (milk.1) (mineral water.3) (spaghetti.5) 
-{brownies.2}
-(brownies.1) (hot dogs.1) (pancakes.1) (avocado.1) (body spray.1) (french fries.2) (green tea.4) (soup.12) 
-(brownies.1) (white wine.1) (chocolate.1) (green tea.2) (spaghetti.5) 
-{escalope.2}
-(escalope.1) (frozen smoothie.1) (salmon.1) (energy bar.1) (ground beef.1) (milk.1) (mineral water.3) (spaghetti.5) 
-(escalope.1) (fresh tuna.1) (frozen smoothie.1) (frozen vegetables.1) (whole wheat rice.1) (honey.1) (mineral water.1) (spaghetti.4) (soup.12) 
-{fresh tuna.2}
-(fresh tuna.1) (salmon.1) (turkey.1) (chicken.1) (eggs.1) (mineral water.3) (spaghetti.5) 
-(fresh tuna.1) (frozen smoothie.1) (frozen vegetables.1) (whole wheat rice.1) (honey.1) (mineral water.1) (spaghetti.4) (soup.12) 
-{frozen smoothie.2}
-(frozen smoothie.1) (salmon.1) (energy bar.1) (ground beef.1) (milk.1) (mineral water.3) (spaghetti.5) 
-(frozen smoothie.1) (frozen vegetables.1) (whole wheat rice.1) (honey.1) (mineral water.1) (spaghetti.4) (soup.12) 
-{frozen vegetables.2}
-(frozen vegetables.1) (whole wheat rice.1) (honey.1) (mineral water.1) (spaghetti.4) (soup.12) 
-(frozen vegetables.1) (ground beef.1) (chocolate.1) (green tea.2) (spaghetti.4) (soup.12) 
-{grated cheese.2}
-(grated cheese.1) (pasta.1) (shrimp.1) (avocado.1) (honey.1) (white wine.1) (burgers.1) 
-(grated cheese.1) (white wine.1) (ground beef.1) (mineral water.3) (spaghetti.5) 
-{hot dogs.2}
-(hot dogs.1) (pancakes.1) (avocado.1) (body spray.1) (french fries.2) (green tea.4) (soup.12) 
-(hot dogs.1) (turkey.1) (burgers.1) (ground beef.1) (chocolate.2) (eggs.2) (soup.12) 
-{pancakes.2}
-(pancakes.1) (body spray.1) (mineral water.1) (green tea.2) (spaghetti.5) 
-(pancakes.1) (avocado.1) (body spray.1) (french fries.2) (green tea.4) (soup.12) 
-{pasta.2}
-(pasta.1) (shrimp.1) (chocolate.2) (eggs.2) (soup.12) 
-(pasta.1) (shrimp.1) (avocado.1) (honey.1) (white wine.1) (burgers.1) 
-{salmon.2}
-(salmon.1) (turkey.1) (chicken.1) (eggs.1) (mineral water.3) (spaghetti.5) 
-(salmon.1) (energy bar.1) (ground beef.1) (milk.1) (mineral water.3) (spaghetti.5) 
-{shrimp.2}
-(shrimp.1) (chocolate.2) (eggs.2) (soup.12) 
-(shrimp.1) (avocado.1) (honey.1) (white wine.1) (burgers.1) 
-{turkey.2}
-(turkey.1) (chicken.1) (eggs.1) (mineral water.3) (spaghetti.5) 
-(turkey.1) (burgers.1) (ground beef.1) (chocolate.2) (eggs.2) (soup.12) 
-{whole wheat rice.2}
-(whole wheat rice.1) (energy bar.1) (milk.1) (mineral water.1) (green tea.1) 
-(whole wheat rice.1) (honey.1) (mineral water.1) (spaghetti.4) (soup.12) 
 {avocado.3}
 (avocado.1) (honey.1) (white wine.1) (burgers.1) 
 (avocado.1) (milk.1) (spaghetti.4) (soup.12) 
@@ -180,36 +136,16 @@ bug spray 1
 {soup.12}
 (soup.12) 
 ==========================
+
 ========BTLOAD========
 Success
 =======================
 
-========PRINT_BPTREE========
-FrequentPattern        Frequency
-{almonds, eggs} 2
-{burgers, eggs} 2
-{chicken, eggs} 2
-{eggs, french fries} 2
-{eggs, mineral water} 2
-{eggs, turkey} 2
-{almonds, burgers, eggs} 2
-{almonds, eggs, soup} 2
-{burgers, eggs, soup} 2
-{chicken, eggs, mineral water} 2
-{eggs, french fries, soup} 2
-{almonds, burgers, eggs, soup} 2
-{chocolate, eggs} 3
-{chocolate, eggs, soup} 3
-{eggs, soup} 4
-==========================
+========PRINT_RANGE========
+ERROR 700
+=======================
 
-========PRINT_CONFIDENCE========
-FrequentPattern Frequency      Confidence
-{almonds, burgers} 2 0.25
-{almonds, burgers} 2 0.25
-{almonds, burgers} 2 0.25
-{almonds, burgers} 2 0.25
-{almonds, burgers} 2 0.25
-{almonds, burgers} 2 0.25
-{almonds, burgers} 2 0.25
-{body spray, green tea} 3 0.375
+========EXIT========
+Success
+=======================
+

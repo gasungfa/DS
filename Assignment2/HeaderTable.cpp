@@ -1,18 +1,19 @@
 #include "HeaderTable.h"
 
 HeaderTable::~HeaderTable() {
-
+	indexTable.clear();
+	dataTable.clear();
 }
 
 
 void HeaderTable::insertTable(int frequency,const char* item) {
-	if(frequency == 1){
+	if(frequency == 1){//if item is not exist, then new insert indexTable
 		indexTable.push_back(make_pair(frequency, item));
 
 		FPNode* NewNode = new FPNode();
 		NewNode->setItem(item);
-		NewNode->updateFrequency(1);
-		dataTable.insert(make_pair(item, NewNode));
+		NewNode->updateFrequency(1);//frequency update 1
+		dataTable.insert(make_pair(item, NewNode));//insert the data in dataTable
 		ascendingIndexTable();
 		return;
 	}
@@ -28,9 +29,9 @@ void HeaderTable::insertTable(int frequency,const char* item) {
 		}
 		index++;size--;
 	}
-	descendingIndexTable();
+	descendingIndexTable();//descending index Table
 }
-int HeaderTable::find_frequency(string item){
+int HeaderTable::find_frequency(string item){//for find the item's frequency
 	int frequency = 0;
 	list<pair<int,string>>::iterator iter;
 
